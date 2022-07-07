@@ -33,16 +33,13 @@ const resetInterval = () => {
     minutaTimer = 0
     godzinaTimer = 0
 }
-start.addEventListener('click', ()=>{
-    startInterval()
-    start.replaceWith(stop)
-    stop.style.display = "block"
-})
-stop.addEventListener('click',()=>{
-    stopInterval()
-    stop.replaceWith(start)
-})
-reset.addEventListener("click",()=>{
-    resetInterval()
-    stop.replaceWith(start)
-})
+const listerner = function (czynnosc,cb,replace,wiht) {
+    czynnosc.addEventListener('click', ()=>{
+        cb()
+        replace.replaceWith(wiht)
+    })
+}
+start.addEventListener('click', ()=>stop.style.display = "block")
+listerner(start,startInterval,start,stop)
+listerner(stop,stopInterval,stop,start)
+listerner(reset,resetInterval,stop,start)
