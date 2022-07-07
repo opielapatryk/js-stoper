@@ -22,3 +22,6 @@ button{
     margin-bottom: 1em;
     font-size: 4em;
 }
+.stop{
+    display: none;
+}

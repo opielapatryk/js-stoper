@@ -13,7 +13,6 @@ const startCounting = ()=>{
     minutaTimer < 10 ? minuta.innerHTML = `0${minutaTimer}` : minuta.innerHTML = minutaTimer
     godzinaTimer < 10 ? godzina.innerHTML = `0${godzinaTimer}` : godzina.innerHTML = godzinaTimer
     sekundaTimer += 1
-    
     if(sekundaTimer>=60){
         sekundaTimer = 0
         minutaTimer += 1
@@ -22,7 +21,6 @@ const startCounting = ()=>{
         minutaTimer = 0
         godzinaTimer += 1
     }
-
 }
 const startInterval = () => intervalID = setInterval(startCounting,10)
 const stopInterval = () => clearInterval(intervalID)
@@ -34,8 +32,17 @@ const resetInterval = () => {
     sekundaTimer = 0
     minutaTimer = 0
     godzinaTimer = 0
-
 }
-start.addEventListener('click', startInterval)
-stop.addEventListener('click',stopInterval)
-reset.addEventListener("click",resetInterval)
+start.addEventListener('click', ()=>{
+    startInterval()
+    start.replaceWith(stop)
+    stop.style.display = "block"
+})
+stop.addEventListener('click',()=>{
+    stopInterval()
+    stop.replaceWith(start)
+})
+reset.addEventListener("click",()=>{
+    resetInterval()
+    stop.replaceWith(start)
+})
